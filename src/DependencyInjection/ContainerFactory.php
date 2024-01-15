@@ -5,8 +5,6 @@ declare(strict_types=1);
 namespace TomasVotruba\SymfonyConfigGenerator\DependencyInjection;
 
 use Illuminate\Container\Container;
-use PhpParser\Parser;
-use PhpParser\ParserFactory;
 use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
@@ -25,7 +23,7 @@ final class ContainerFactory
         // console
         $container->singleton(
             SymfonyStyle::class,
-            static fn(): SymfonyStyle => new SymfonyStyle(new ArrayInput([]), new ConsoleOutput())
+            static fn (): SymfonyStyle => new SymfonyStyle(new ArrayInput([]), new ConsoleOutput())
         );
 
         $container->singleton(Application::class, function (Container $container): Application {
@@ -37,8 +35,10 @@ final class ContainerFactory
             $application->setDefaultCommand($generateCommand->getName(), true);
 
             // remove basic command to make output clear
-            $application->get('help')->setHidden(true);
-            $application->get('completion')->setHidden(true);
+            $application->get('help')
+                ->setHidden(true);
+            $application->get('completion')
+                ->setHidden(true);
 
             return $application;
         });
