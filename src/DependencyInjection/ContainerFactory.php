@@ -12,7 +12,6 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Style\SymfonyStyle;
 use TomasVotruba\SymfonyConfigGenerator\Console\Command\GenerateCommand;
-use TomasVotruba\SymfonyConfigGenerator\Helpers\PrivatesAccessor;
 
 final class ContainerFactory
 {
@@ -23,58 +22,27 @@ final class ContainerFactory
     {
         $container = new Container();
 
-        $this->emulateTokensOfOlderPHP();
-
         // console
         $container->singleton(
             SymfonyStyle::class,
-            static fn (): SymfonyStyle => new SymfonyStyle(new ArrayInput([]), new ConsoleOutput())
+            static fn(): SymfonyStyle => new SymfonyStyle(new ArrayInput([]), new ConsoleOutput())
         );
 
         $container->singleton(Application::class, function (Container $container): Application {
             $application = new Application();
 
-            $vendorCommand = $container->make(GenerateCommand::class);
-            $application->add($vendorCommand);
+            $generateCommand = $container->make(GenerateCommand::class);
+            $application->add($generateCommand);
+
+            $application->setDefaultCommand($generateCommand->getName(), true);
 
             // remove basic command to make output clear
-            $this->cleanupDefaultCommands($application);
+            $application->get('help')->setHidden(true);
+            $application->get('completion')->setHidden(true);
 
             return $application;
         });
 
-        // parser
-        $container->singleton(Parser::class, static function (): Parser {
-            $phpParserFactory = new ParserFactory();
-            return $phpParserFactory->create(ParserFactory::PREFER_PHP7);
-        });
-
         return $container;
-    }
-
-    public function cleanupDefaultCommands(Application $application): void
-    {
-        PrivatesAccessor::propertyClosure($application, 'commands', static function (array $commands): array {
-            // remove default commands, as not needed here
-            unset($commands['completion']);
-            unset($commands['help']);
-            return $commands;
-        });
-    }
-
-    private function emulateTokensOfOlderPHP(): void
-    {
-        // define fallback constants for PHP 8.0 tokens in case of e.g. PHP 7.2 run
-        if (! defined('T_MATCH')) {
-            define('T_MATCH', 5000);
-        }
-
-        if (! defined('T_READONLY')) {
-            define('T_READONLY', 5010);
-        }
-
-        if (! defined('T_ENUM')) {
-            define('T_ENUM', 5015);
-        }
     }
 }

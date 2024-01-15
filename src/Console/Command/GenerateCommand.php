@@ -10,6 +10,8 @@ use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\Extension\Extension;
 use TomasVotruba\SymfonyConfigGenerator\Enum\SymfonyClass;
 
 final class GenerateCommand extends Command
@@ -53,8 +55,13 @@ final class GenerateCommand extends Command
                 continue;
             }
 
+            $extensionShortClass = (new \ReflectionClass($extensionClass))->getShortName();
+            $this->symfonyStyle->writeln(sprintf('Generated "%s" class', $extensionShortClass));
+
             $configBuilderGenerator->build($configuration);
         }
+
+        $this->symfonyStyle->success('Done');
 
         return self::SUCCESS;
     }
@@ -64,8 +71,6 @@ final class GenerateCommand extends Command
      */
     private function createExtensionConfiguration(string $extensionClass): ?ConfigurationInterface
     {
-        $containerBuilderClass = SymfonyClass::CONTAINER_BUILDER;
-
         $containerBuilder = new ContainerBuilder();
         $containerBuilder->setParameter('kernel.debug', false);
 
