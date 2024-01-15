@@ -25,6 +25,7 @@ final class GenerateCommand extends Command
         SymfonyClass::SECURITY_EXTENSION,
         SymfonyClass::TWIG_EXTENSION,
         SymfonyClass::DOCTRINE_EXTENSION,
+        SymfonyClass::FRAMEWORK_EXTENSION,
     ];
 
     private SymfonyStyle $symfonyStyle;
