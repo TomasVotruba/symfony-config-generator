@@ -16,7 +16,7 @@ if (file_exists(__DIR__ . '/../../../../vendor/autoload.php')) {
 }
 
 $containerFactory = new ContainerFactory();
-$container = $containerFactory->create();
+$container = $containerFactory->createApplication();
 
 $application = $container->make(Application::class);
 

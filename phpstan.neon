@@ -2,6 +2,5 @@ parameters:
     paths:
         - bin
         - src
-        - tests
 
     level: 8
