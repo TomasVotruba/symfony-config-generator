@@ -16,7 +16,7 @@ final class ContainerFactory
         $generateCommand = new GenerateCommand();
         $application->add($generateCommand);
 
-        $application->setDefaultCommand($generateCommand->getName(), true);
+        $application->setDefaultCommand((string) $generateCommand->getName(), true);
 
         // remove basic command to make output clear
         $application->get('help')
