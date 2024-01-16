@@ -20,7 +20,6 @@ final class GenerateCommand extends Command
      * @var string[]
      */
     private const EXTENSION_CLASSES = [
-        SymfonyClass::DOCTRINE_EXTENSION,
         SymfonyClass::MONOLOG_EXTENSION,
         SymfonyClass::SECURITY_EXTENSION,
         SymfonyClass::TWIG_EXTENSION,
