@@ -9,11 +9,6 @@ final class SymfonyClass
     /**
      * @var string
      */
-    public const CONTAINER_BUILDER = 'Symfony\Component\DependencyInjection\ContainerBuilder';
-
-    /**
-     * @var string
-     */
     public const SENTRY_EXTENSION = 'Symfony\Bundle\SentryBundle\DependencyInjection\SentryExtension';
 
     /**
