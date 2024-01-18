@@ -14,7 +14,7 @@ final class SymfonyClass
     /**
      * @var string
      */
-    public const DOCTRINE_MIGRATIONS_EXTENSION = 'Doctrine\Bundle\MigrationsBundle\DependencyInjection\MigrationsExtension';
+    public const DOCTRINE_MIGRATIONS_EXTENSION = 'Doctrine\Bundle\MigrationsBundle\DependencyInjection\DoctrineMigrationsExtension';
 
     /**
      * @var string
