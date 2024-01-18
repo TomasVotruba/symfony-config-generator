@@ -14,6 +14,16 @@ final class SymfonyClass
     /**
      * @var string
      */
+    public const SENTRY_EXTENSION = 'Symfony\Bundle\SentryBundle\DependencyInjection\SentryExtension';
+
+    /**
+     * @var string
+     */
+    public const DOCTRINE_MIGRATIONS_EXTENSION = 'Doctrine\Bundle\MigrationsBundle\DependencyInjection\MigrationsExtension';
+
+    /**
+     * @var string
+     */
     public const FRAMEWORK_EXTENSION = 'Symfony\Bundle\FrameworkBundle\DependencyInjection\FrameworkExtension';
 
     /**
