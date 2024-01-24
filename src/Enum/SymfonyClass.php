@@ -9,7 +9,7 @@ final class SymfonyClass
     /**
      * @var string
      */
-    public const SENTRY_EXTENSION = 'Symfony\Bundle\SentryBundle\DependencyInjection\SentryExtension';
+    public const SENTRY_EXTENSION = 'Sentry\SentryBundle\DependencyInjection\SentryExtension';
 
     /**
      * @var string
