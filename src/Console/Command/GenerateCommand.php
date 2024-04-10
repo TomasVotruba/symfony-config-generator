@@ -29,7 +29,7 @@ final class GenerateCommand extends Command
         SymfonyClass::DOCTRINE_MIGRATIONS_EXTENSION,
         SymfonyClass::SENTRY_EXTENSION,
         SymfonyClass::WEBPROFILER_EXTENSION,
-        SymfonyClass::AWS_EXTENSION,
+        // SymfonyClass::AWS_EXTENSION,
     ];
 
     private SymfonyStyle $symfonyStyle;
