@@ -45,4 +45,9 @@ final class SymfonyClass
      * @var string
      */
     public const WEBPROFILER_EXTENSION = 'Symfony\Bundle\WebProfilerBundle\DependencyInjection\WebProfilerExtension';
+
+    /**
+     * @var string
+     */
+    public const AWS_EXTENSION = 'Aws\Symfony\DependencyInjection\AwsExtension';
 }
