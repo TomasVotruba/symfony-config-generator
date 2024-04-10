@@ -40,4 +40,9 @@ final class SymfonyClass
      * @var string
      */
     public const DOCTRINE_EXTENSION = 'Doctrine\Bundle\DoctrineBundle\DependencyInjection\DoctrineExtension';
+
+    /**
+     * @var string
+     */
+    public const WEBPROFILER_EXTENSION = 'Symfony\Bundle\WebProfilerBundle\DependencyInjection\WebProfilerExtension';
 }

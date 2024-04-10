@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace TomasVotruba\SymfonyConfigGenerator\Console\Command;
 
+use ReflectionClass;
 use Symfony\Component\Config\Builder\ConfigBuilderGenerator;
 use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\Console\Command\Command;
@@ -27,6 +28,7 @@ final class GenerateCommand extends Command
         SymfonyClass::FRAMEWORK_EXTENSION,
         SymfonyClass::DOCTRINE_MIGRATIONS_EXTENSION,
         SymfonyClass::SENTRY_EXTENSION,
+        SymfonyClass::WEBPROFILER_EXTENSION,
     ];
 
     private SymfonyStyle $symfonyStyle;
@@ -57,7 +59,7 @@ final class GenerateCommand extends Command
                 continue;
             }
 
-            $extensionShortClass = (new \ReflectionClass($extensionClass))->getShortName();
+            $extensionShortClass = (new ReflectionClass($extensionClass))->getShortName();
             $this->symfonyStyle->writeln(sprintf('Generated "%s" class', $extensionShortClass));
 
             $configBuilderGenerator->build($configuration);
